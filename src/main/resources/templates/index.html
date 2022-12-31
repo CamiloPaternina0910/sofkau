@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>Home</title>
+    <link th:replace="plantilla::bootstrapcss">
+</head>
+<body>
+    <div th:include="plantilla::navbar(nombre = ${nombreBuscar})"></div>
+
+    <div class="container mt-3 bg-white rounded">
+        <div class="row justify-content-center">
+            <h2 class="mt-2 col-11">Mis naves espaciales</h2>
+
+            <div th:if="${naves != null}">
+                <div th:each="nave : ${naves}" class="p-2 mb-3">
+
+                    <div class="shadow p-3 col-10 m-auto row justify-content-center border border-secundary rounded">
+
+                        <div class="col-7 text-center">
+                            <img th:src="'imagenes/naves/' + ${nave.getTipo()} + '.png'" style="height: 200px; width: 180px;">
+                        </div>
+
+                        <div class="col-5 row">
+                            <h4>Caracteristicas de la nave</h4>
+                            <div style="margin-left: 15px !important;">
+                                <p th:text="'Id: '+ ${nave.getId()}"></p>
+                                <p th:text="'Nombre: '+ ${nave.getNombre()}"></p>
+                                <p th:text="'Tipo: '+ ${nave.getTipo().name().replace('_', ' ')}"></p>
+                                <p th:text="'Altura: '+ ${nave.getAltura()} + ' metros'"></p>
+                                <p th:text="'Peso: '+ ${nave.getToneladasPeso()} + ' kg'"></p>
+                            </div>
+
+                            <div class="row justify-content-around">
+                                <button class="btn btn-success col-4" th:attr="onclick=|alertaMensaje('${nave.despegar()}')|">Despegar</button>
+                                <button class="btn btn-warning col-3" th:attr="onclick=|alertaMensaje('${nave.orbitar()}')|">Orbitar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="plantilla::boostrapjs"></div>
+    <script th:src="@{/js/Movimientos.js}"></script>
+</body>
+</html>

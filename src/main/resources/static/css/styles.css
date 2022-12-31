@@ -1,0 +1,27 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url("/imagenes/fondo/stars-universe.gif");
+}
+
+.min-altura-toda{
+    min-height: 100vh;
+}
+
+.contenido{
+    background-color:rgba(220, 214, 214, 0.5);
+}
+
+h2, p, h3,h4,h5, label{
+    font-family: "Agency FB";
+}
+
+p,h4{
+    font-size: 20px;
+    margin-left: 4px;
+}
+
+label{
+    font-size: 20px;
+    padding-left: 10px;
+}

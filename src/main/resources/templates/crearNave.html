@@ -1,0 +1,47 @@
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Creando una nueva nave</title>
+        <link rel="stylesheet" th:href="@{/css/styles.css}">
+        <link th:replace="plantilla::bootstrapcss">
+    </head>
+    <body>
+
+    <div th:replace="plantilla::navbar"></div>
+
+    <div class="container mt-3 bg-white rounded">
+        <div class="row justify-content-center">
+            <h2 class="mt-2 col-11">Formulario nueva nave</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <form th:action="@{/crear/nave}" method="POST" th:object="${nave}" class="col-10 text-center">
+                <label name="nombre">Nombre: </label>
+                <div></div>
+                <input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="col-6 rounded">
+                <div></div>
+                <label name="tipo">Tipo de nave: </label>
+                <div></div>
+                <select type="text" name="tipo" id="tipo"
+                        class="rounded form-select m-auto" th:field="*{tipo}" style="width: 463px;" placeholder="Escoge el tipo de nave">
+                    <option th:value="${tipoNave}" th:text="${tipoNave.name().replace('_', ' ')}"
+                            th:each="tipoNave : ${T(com.example.sofkau.enumeraciones.TiposNaves).values()}"></option>
+                </select>
+                <div></div>
+                <label name="altura">Altura: </label>
+                <div></div>
+                <input type="number" id="altura" name="altura" th:field="*{altura}" class="col-6 rounded">
+                <div></div>
+                <label name="peso">Peso: </label>
+                <div></div>
+                <input type="number" id="peso" name="peso" th:field="*{toneladasPeso}" class="col-6 rounded">
+                <div></div>
+
+                <input type="submit" value="Crear" class="m-3 btn btn-primary">
+            </form>
+        </div>
+    </div>
+
+    <div th:replace="plantilla::boostrapjs"></div>
+    </body>
+    </html>
